@@ -162,6 +162,34 @@ namespace ListasEnlazadasSimples.Services
             }
         }
 
+        public string AgregarNodoDespuesDePosicionEspecifica(Nodo nuevoNodo, int posicion)
+        {
+            if (posicion < 0 || ListaVacia())
+            {
+                return "No se puede agregar después de una ubicación inválida.";
+            }
+
+            Nodo nodoActual = PrimerNodo;
+            int pos = 1;
+
+            while (nodoActual != null && pos < posicion)
+            {
+                nodoActual = nodoActual.Liga;
+                pos++;
+            }
+
+            if (nodoActual != null)
+            {
+                nuevoNodo.Liga = nodoActual.Liga;
+                nodoActual.Liga = nuevoNodo;
+                return "Se ha agregado el nodo después de la ubicación específica.";
+            }
+            else
+            {
+                return "No se puede agregar después de la ubicación específica.";
+            }
+        }
+
 
         public IEnumerator GetEnumerator()
         {

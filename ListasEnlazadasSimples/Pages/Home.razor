@@ -19,7 +19,7 @@
                             <button class="dropdown-item" @onclick="AgregarNodoInicio">Agregar Nodo Al Inicio</button>
                             <div class="dropdown-divider"></div>
                             <button class="dropdown-item" @onclick="AgregarNodoFinal">Agregar Nodo Al Final</button>
-                             <div class="dropdown-divider"></div>
+                            <div class="dropdown-divider"></div>
                             <button class="dropdown-item" @onclick="() => AgregarNodoAntesDeDatoX()">Agregar Nodo Antes De Dato X</button>
                             <input type="text" class="form-control" placeholder="Ingrese el dato X" @bind="datoX" />
                             <div class="dropdown-divider"></div>
@@ -31,7 +31,7 @@
                             <div class="dropdown-divider"></div>
                             <button class="dropdown-item" @onclick="AgregarNodoEnPosicionEspecifica">Agregar Nodo Antes De Ubicación Específica</button>
                             <input type="number" class="form-control" placeholder="Ingrese la ubicación específica" @bind="posicion" />
-@*                             <button class="dropdown-item" @onclick="AgregarNodoEnPosicionEspecifica">Agregar Nodo En Ubicación Específica</button>
+                            @*                             <button class="dropdown-item" @onclick="AgregarNodoEnPosicionEspecifica">Agregar Nodo En Ubicación Específica</button>
                             <button class="dropdown-item" @onclick="AgregarNodoAntesDePosicionEspecifica">Agregar Nodo Antes De Ubicación Específica</button>
                             <button class="dropdown-item" @onclick="AgregarNodoDespuesDePosicionEspecifica">Agregar Nodo Después De Ubicación Específica</button>
                             <div class="dropdown-divider"></div>
@@ -102,18 +102,18 @@
     {
         Nodo nuevoNodo = new Nodo(Info);
 
-            if (posicion <= 0)
-            {
-                Mensaje = "La ubicación específica debe ser mayor que cero.";
-            }
-            else if (posicion == 1)
-            {
-                Mensaje = Lista.AgregarNodoAlInicio(nuevoNodo);
-            }
-            else
-            {
+        if (posicion <= 0)
+        {
+            Mensaje = "La ubicación específica debe ser mayor que cero.";
+        }
+        else if (posicion == 1)
+        {
+            Mensaje = Lista.AgregarNodoAlInicio(nuevoNodo);
+        }
+        else
+        {
             Mensaje = Lista.AgregarNodoEnPosicionEspecifica(nuevoNodo, posicion);
-            }
+        }
 
         Info = string.Empty;
         posicion = 0;
@@ -124,32 +124,46 @@
     {
         Nodo nuevoNodo = new Nodo(Info);
 
-            if (posicion <= 0)
-            {
-                Mensaje = "La ubicación específica debe ser mayor que cero.";
-            }
-            else
-            {
-                Mensaje = Lista.AgregarNodoAntesDePosicionEspecifica(nuevoNodo, posicion);
-            }
+        if (posicion <= 0)
+        {
+            Mensaje = "La ubicación específica debe ser mayor que cero.";
+        }
+        else
+        {
+            Mensaje = Lista.AgregarNodoAntesDePosicionEspecifica(nuevoNodo, posicion);
+        }
 
         Info = string.Empty;
         posicion = 0;
     }
 
 
-    void AgregarNodoDespuesDePosicionEspecifica()
+    void AgregarNodoDespuesDeUbicacionEspecifica()
     {
-        
+        Nodo nuevoNodo = new Nodo(Info);
+
+            if (posicion < 0)
+            {
+                Mensaje = "La ubicación específica debe ser un número positivo.";
+            }
+            else
+            {
+                Mensaje = Lista.AgregarNodoDespuesDePosicionEspecifica(nuevoNodo, posicion);
+            }
+
+
+        Info = string.Empty;
+        posicion = 0; 
     }
+
 
     void RecorridoRecursivoDeLaLista()
     {
-        
+
     }
 
     void BuscarElementoEnParticular()
     {
-        
+
     }
 }
