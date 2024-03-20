@@ -20,23 +20,19 @@
                             <div class="dropdown-divider"></div>
                             <button class="dropdown-item" @onclick="AgregarNodoFinal">Agregar Nodo Al Final</button>
                             <div class="dropdown-divider"></div>
+                            <input type="text" class="form-control" placeholder="Ingrese el dato X" @bind="datoX" />
                             <button class="dropdown-item" @onclick="() => AgregarNodoAntesDeDatoX()">Agregar Nodo Antes De Dato X</button>
-                            <input type="text" class="form-control" placeholder="Ingrese el dato X" @bind="datoX" />
-                            <div class="dropdown-divider"></div>
                             <button class="dropdown-item" @onclick="() => AgregarNodoDespuesDeDatoX()">Agregar Nodo Después De Dato X</button>
-                            <input type="text" class="form-control" placeholder="Ingrese el dato X" @bind="datoX" />
                             <div class="dropdown-divider"></div>
+                            <input type="number" class="form-control" placeholder="Ingrese la ubicación específica" @bind="posicion" />
                             <button class="dropdown-item" @onclick="AgregarNodoEnPosicionEspecifica">Agregar Nodo En Ubicación Específica</button>
-                            <input type="number" class="form-control" placeholder="Ingrese la ubicación específica" @bind="posicion" />
-                            <div class="dropdown-divider"></div>
-                            <button class="dropdown-item" @onclick="AgregarNodoEnPosicionEspecifica">Agregar Nodo Antes De Ubicación Específica</button>
-                            <input type="number" class="form-control" placeholder="Ingrese la ubicación específica" @bind="posicion" />
-                            @*                             <button class="dropdown-item" @onclick="AgregarNodoEnPosicionEspecifica">Agregar Nodo En Ubicación Específica</button>
                             <button class="dropdown-item" @onclick="AgregarNodoAntesDePosicionEspecifica">Agregar Nodo Antes De Ubicación Específica</button>
-                            <button class="dropdown-item" @onclick="AgregarNodoDespuesDePosicionEspecifica">Agregar Nodo Después De Ubicación Específica</button>
+                            <button class="dropdown-item" @onclick="AgregarNodoDespuesDePosicionEspecifica">Agregar Nodo Despues De Ubicación Específica</button>
                             <div class="dropdown-divider"></div>
                             <button class="dropdown-item" @onclick="RecorridoRecursivoDeLaLista">Recorrido Recursivo de la Lista</button>
-                            <button class="dropdown-item" @onclick="BuscarElementoEnParticular">Buscar Elemento en Particular</button> *@
+                            <button class="dropdown-item" @onclick="BuscarElementoEnParticular">Buscar Elemento en Particular</button>
+
+                            
                         </div>
                     </div>
                 </div>
@@ -138,7 +134,7 @@
     }
 
 
-    void AgregarNodoDespuesDeUbicacionEspecifica()
+    void AgregarNodoDespuesDePosicionEspecifica()
     {
         Nodo nuevoNodo = new Nodo(Info);
 
