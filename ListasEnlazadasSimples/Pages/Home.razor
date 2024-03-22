@@ -2,6 +2,8 @@
 
 @using ListasEnlazadasSimples.DTO
 @using ListasEnlazadasSimples.Services
+@using System.Text
+
 
 <PageTitle>Home</PageTitle>
 
@@ -27,12 +29,11 @@
                             <input type="number" class="form-control" placeholder="Ingrese la ubicación específica" @bind="posicion" />
                             <button class="dropdown-item" @onclick="AgregarNodoEnPosicionEspecifica">Agregar Nodo En Ubicación Específica</button>
                             <button class="dropdown-item" @onclick="AgregarNodoAntesDePosicionEspecifica">Agregar Nodo Antes De Ubicación Específica</button>
-                            <button class="dropdown-item" @onclick="AgregarNodoDespuesDePosicionEspecifica">Agregar Nodo Despues De Ubicación Específica</button>
+                            <button class="dropdown-item" @onclick="AgregarNodoDespuesDePosicionEspecifica">Agregar Nodo Despuesg De Ubicación Específica</button>
                             <div class="dropdown-divider"></div>
-                            <button class="dropdown-item" @onclick="RecorridoRecursivoDeLaLista">Recorrido Recursivo de la Lista</button>
                             <button class="dropdown-item" @onclick="BuscarElementoEnParticular">Buscar Elemento en Particular</button>
 
-                            
+
                         </div>
                     </div>
                 </div>
@@ -43,15 +44,21 @@
     <hr />
 
     <p class="lead">@Mensaje</p>
+    
 
     <hr />
 
     <ul class="list-group list-group-numbered list-group-horizontal">
+        <li class="list-group-item">
+        @ObtenerListaRecursiva()
+        </li>
+    </ul>
+    @* <ul class="list-group list-group-numbered list-group-horizontal">
         @foreach (var item in Lista)
         {
             <li class="list-group-item">@item</li>
         }
-    </ul>
+    </ul> *@
 </div>
 
 @code {
@@ -133,33 +140,48 @@
         posicion = 0;
     }
 
-
     void AgregarNodoDespuesDePosicionEspecifica()
     {
         Nodo nuevoNodo = new Nodo(Info);
 
-            if (posicion < 0)
-            {
-                Mensaje = "La ubicación específica debe ser un número positivo.";
-            }
-            else
-            {
-                Mensaje = Lista.AgregarNodoDespuesDePosicionEspecifica(nuevoNodo, posicion);
-            }
-
-
+        if (posicion < 0)
+        {
+            Mensaje = "La ubicación específica debe ser un número positivo.";
+        }
+        else
+        {
+            Mensaje = Lista.AgregarNodoDespuesDePosicionEspecifica(nuevoNodo, posicion);
+        }
         Info = string.Empty;
-        posicion = 0; 
+        posicion = 0;
     }
 
-
-    void RecorridoRecursivoDeLaLista()
+    public string ObtenerListaRecursiva()
     {
-
+        StringBuilder sb = new StringBuilder();
+        RecorrerRecursivo(Lista.PrimerNodo, sb);
+        return sb.ToString();
     }
+
+
+    void RecorrerRecursivo(Nodo nodoActual, StringBuilder sb)
+    {
+        if (nodoActual != null)
+        {
+            sb.AppendLine(nodoActual.Info.ToString());
+            RecorrerRecursivo(nodoActual.Liga, sb);
+        }
+    }
+
+    // void RecorridoRecursivoDeLaLista()
+    // {
+    //     StringBuilder sb = new StringBuilder();
+    //     RecorrerRecursivo(Lista.PrimerNodo, sb);
+    //     Mensaje = sb.ToString();
+    // }
 
     void BuscarElementoEnParticular()
     {
-
+        // Implementa la lógica para buscar un elemento en particular
     }
 }

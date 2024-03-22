@@ -190,16 +190,15 @@ namespace ListasEnlazadasSimples.Services
             }
         }
 
+        //public IEnumerator GetEnumerator()
+        //{
+        //    Nodo nodoAuxiliar = PrimerNodo;
 
-        public IEnumerator GetEnumerator()
-        {
-            Nodo nodoAuxiliar = PrimerNodo;
-
-            while (nodoAuxiliar != null)
-            {
-                yield return nodoAuxiliar;
-                nodoAuxiliar = nodoAuxiliar.Liga;
-            }
-        }
+        //    while (nodoAuxiliar != null)
+        //    {
+        //        yield return nodoAuxiliar;
+        //        nodoAuxiliar = nodoAuxiliar.Liga;
+        //    }
+        //}
     }
 }
