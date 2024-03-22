@@ -46,8 +46,17 @@
     <p class="lead">@Mensaje</p>
     
         <hr />
-
     <ul class="list-group list-group-numbered list-group-horizontal">
+    @if (!string.IsNullOrEmpty(ObtenerListaRecursiva()))
+    {
+        @foreach (var item in ObtenerListaRecursiva().Split('\n', StringSplitOptions.RemoveEmptyEntries))
+        {
+            <li class="list-group-item">@item</li>
+        }
+    }
+    </ul>
+
+   @* <ul class="list-group list-group-numbered list-group-horizontal">
         <li class="list-group-item">
 
         @ObtenerListaRecursiva()
@@ -55,7 +64,7 @@
     </ul>
 
     <p class="lead">@MensajeBusqueda</p>
-    @* <ul class="list-group list-group-numbered list-group-horizontal">
+     <ul class="list-group list-group-numbered list-group-horizontal">
         @foreach (var item in Lista)
         {
             <li class="list-group-item">@item</li>
