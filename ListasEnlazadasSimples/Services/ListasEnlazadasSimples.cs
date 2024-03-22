@@ -190,6 +190,27 @@ namespace ListasEnlazadasSimples.Services
             }
         }
 
+        public (Nodo, int) BuscarElemento(string dato)
+        {
+            Nodo nodoActual = PrimerNodo;
+            int posicion = 1;
+
+            while (nodoActual != null)
+            {
+                if (nodoActual.Info.ToString() == dato)
+                {
+                    return (nodoActual, posicion); // Retorna el nodo y su posición cuando se encuentra el dato
+                }
+                nodoActual = nodoActual.Liga;
+                posicion++;
+            }
+
+            return (null, -1); // Retorna (null, -1) si el dato no se encuentra en la lista
+        }
+
+
+
+
         //public IEnumerator GetEnumerator()
         //{
         //    Nodo nodoAuxiliar = PrimerNodo;

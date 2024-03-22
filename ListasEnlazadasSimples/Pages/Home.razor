@@ -45,14 +45,16 @@
 
     <p class="lead">@Mensaje</p>
     
-
-    <hr />
+        <hr />
 
     <ul class="list-group list-group-numbered list-group-horizontal">
         <li class="list-group-item">
+
         @ObtenerListaRecursiva()
         </li>
     </ul>
+
+    <p class="lead">@MensajeBusqueda</p>
     @* <ul class="list-group list-group-numbered list-group-horizontal">
         @foreach (var item in Lista)
         {
@@ -70,6 +72,9 @@
     public ListasEnlazadasSimples Lista { get; set; } = new ListasEnlazadasSimples();
 
     string Mensaje = string.Empty;
+
+    // Nuevo campo para mostrar el resultado de la búsqueda
+    string MensajeBusqueda = string.Empty;
 
     void AgregarNodoFinal()
     {
@@ -182,6 +187,22 @@
 
     void BuscarElementoEnParticular()
     {
-        // Implementa la lógica para buscar un elemento en particular
+        if (string.IsNullOrEmpty(datoX))
+        {
+            MensajeBusqueda = "Por favor, ingrese un dato válido para buscar.";
+            return;
+        }
+
+        (Nodo nodoBuscado, int posicion) = Lista.BuscarElemento(datoX);
+        if (nodoBuscado != null)
+        {
+            MensajeBusqueda = $"El elemento fue encontrado en la lista en la posición {posicion}.";
+        }
+        else
+        {
+            MensajeBusqueda = "El elemento no fue encontrado en la lista.";
+        }
+        datoX = string.Empty;
+
     }
 }
