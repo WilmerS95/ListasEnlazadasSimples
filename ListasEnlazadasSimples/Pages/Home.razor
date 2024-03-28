@@ -45,6 +45,8 @@
                             <div class="dropdown-divider"></div>
                             <button class="dropdown-item" @onclick="BuscarElementoEnParticular">Eliminar Nodo Al Final</button>
                             <div class="dropdown-divider"></div>
+                            <button class="dropdown-item" @onclick="OrdenarAscendente">Ordenar A-Z / Ascendente</button>
+                            <button class="dropdown-item" @onclick="OrdenarDescendente">Ordenar Z-A / Descendente</button>
                         </div>
                     </div>
                 </div>
@@ -227,5 +229,15 @@
     void EliminarNodoInicio()
     {
         Mensaje = Lista.EliminarNodoInicio();
+    }
+
+    void OrdenarAscendente()
+    {
+
+    }
+
+    void OrdenarDescendente()
+    {
+        
     }
 }
