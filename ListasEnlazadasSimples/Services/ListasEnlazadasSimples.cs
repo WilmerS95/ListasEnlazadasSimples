@@ -199,17 +199,13 @@ namespace ListasEnlazadasSimples.Services
             {
                 if (nodoActual.Info.ToString() == dato)
                 {
-                    return (nodoActual, posicion); // Retorna el nodo y su posición cuando se encuentra el dato
+                    return (nodoActual, posicion);
                 }
                 nodoActual = nodoActual.Liga;
                 posicion++;
             }
 
-            return (null, -1); // Retorna (null, -1) si el dato no se encuentra en la lista
-        }
-
-
-
+            return (null, -1);
 
         //public IEnumerator GetEnumerator()
         //{

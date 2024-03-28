@@ -82,9 +82,6 @@
 
     string Mensaje = string.Empty;
 
-    // Nuevo campo para mostrar el resultado de la búsqueda
-    string MensajeBusqueda = string.Empty;
-
     void AgregarNodoFinal()
     {
         Nodo nuevoNodo = new Nodo(Info);
@@ -198,18 +195,18 @@
     {
         if (string.IsNullOrEmpty(datoX))
         {
-            MensajeBusqueda = "Por favor, ingrese un dato válido para buscar.";
+            Mensaje = "Por favor, ingrese un dato válido para buscar.";
             return;
         }
 
         (Nodo nodoBuscado, int posicion) = Lista.BuscarElemento(datoX);
         if (nodoBuscado != null)
         {
-            MensajeBusqueda = $"El elemento fue encontrado en la lista en la posición {posicion}.";
+            Mensaje = $"El elemento fue encontrado en la lista en la posición {posicion}.";
         }
         else
         {
-            MensajeBusqueda = "El elemento no fue encontrado en la lista.";
+            Mensaje = "El elemento no fue encontrado en la lista.";
         }
         datoX = string.Empty;
 
