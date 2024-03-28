@@ -206,6 +206,28 @@ namespace ListasEnlazadasSimples.Services
             }
 
             return (null, -1);
+        }
+
+        public string EliminarNodoInicio()
+        {
+            if (ListaVacia())
+            {
+                return "La lista está vacía, no se puede eliminar ningún nodo.";
+            }
+
+            if (PrimerNodo == UltimoNodo)
+            {
+                PrimerNodo = null;
+                UltimoNodo = null;
+            }
+            else
+            {
+                PrimerNodo = PrimerNodo.Liga;
+            }
+
+            return "Se ha eliminado el nodo al inicio de la lista.";
+        }
+
 
         //public IEnumerator GetEnumerator()
         //{

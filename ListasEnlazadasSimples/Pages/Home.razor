@@ -4,7 +4,6 @@
 @using ListasEnlazadasSimples.Services
 @using System.Text
 
-
 <PageTitle>Home</PageTitle>
 
 <div class="container mt-5">
@@ -14,10 +13,10 @@
                 <input type="text" class="form-control" placeholder="Ingrese información" @bind="Info" />
                 <div class="input-group-append">
                     <div class="dropdown">
-                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Opciones
+                        <button class="btn btn-outline-secondary dropdown-toggle text-truncate"  type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Opciones agregar
                         </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <div class="dropdown-menu dropdown-menu-end">
                             <button class="dropdown-item" @onclick="AgregarNodoInicio">Agregar Nodo Al Inicio</button>
                             <div class="dropdown-divider"></div>
                             <button class="dropdown-item" @onclick="AgregarNodoFinal">Agregar Nodo Al Final</button>
@@ -31,9 +30,21 @@
                             <button class="dropdown-item" @onclick="AgregarNodoAntesDePosicionEspecifica">Agregar Nodo Antes De Ubicación Específica</button>
                             <button class="dropdown-item" @onclick="AgregarNodoDespuesDePosicionEspecifica">Agregar Nodo Despuesg De Ubicación Específica</button>
                             <div class="dropdown-divider"></div>
+                            <input type="text" class="form-control" placeholder="Ingrese el dato a buscar" @bind="datoBuscar" />
                             <button class="dropdown-item" @onclick="BuscarElementoEnParticular">Buscar Elemento en Particular</button>
-
-
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group-append">
+                    <div class="dropdown">
+                        <button class="btn btn-outline-secondary dropdown-toggle text-truncate" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Opciones eliminar
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-end">
+                            <button class="dropdown-item" @onclick="EliminarNodoInicio">Eliminar Nodo Al Inicio</button>
+                            <div class="dropdown-divider"></div>
+                            <button class="dropdown-item" @onclick="BuscarElementoEnParticular">Eliminar Nodo Al Final</button>
+                            <div class="dropdown-divider"></div>
                         </div>
                     </div>
                 </div>
@@ -76,6 +87,7 @@
 
     public string Info { get; set; }
     public string datoX { get; set; }
+    public string datoBuscar { get; set; }
     public int posicion { get; set; }
 
     public ListasEnlazadasSimples Lista { get; set; } = new ListasEnlazadasSimples();
@@ -193,13 +205,13 @@
 
     void BuscarElementoEnParticular()
     {
-        if (string.IsNullOrEmpty(datoX))
+        if (string.IsNullOrEmpty(datoBuscar))
         {
             Mensaje = "Por favor, ingrese un dato válido para buscar.";
             return;
         }
 
-        (Nodo nodoBuscado, int posicion) = Lista.BuscarElemento(datoX);
+        (Nodo nodoBuscado, int posicion) = Lista.BuscarElemento(datoBuscar);
         if (nodoBuscado != null)
         {
             Mensaje = $"El elemento fue encontrado en la lista en la posición {posicion}.";
@@ -210,5 +222,10 @@
         }
         datoX = string.Empty;
 
+    }
+
+    void EliminarNodoInicio()
+    {
+        Mensaje = Lista.EliminarNodoInicio();
     }
 }
