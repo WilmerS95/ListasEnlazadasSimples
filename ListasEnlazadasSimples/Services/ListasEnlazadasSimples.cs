@@ -228,6 +228,58 @@ namespace ListasEnlazadasSimples.Services
             return "Se ha eliminado el nodo al inicio de la lista.";
         }
 
+        public void OrdenarAscendente()
+        {
+            bool intercambio;
+            do
+            {
+                intercambio = false;
+                Nodo nodoActual = PrimerNodo;
+                Nodo nodoSiguiente = PrimerNodo?.Liga;
+
+                while (nodoSiguiente != null)
+                {
+                    if (string.Compare(nodoActual.Info.ToString(), nodoSiguiente.Info.ToString(), StringComparison.OrdinalIgnoreCase) > 0)
+                    {
+                        object temp = nodoActual.Info;
+                        nodoActual.Info = nodoSiguiente.Info;
+                        nodoSiguiente.Info = temp;
+
+                        intercambio = true;
+                    }
+
+                    nodoActual = nodoSiguiente;
+                    nodoSiguiente = nodoSiguiente.Liga;
+                }
+            } while (intercambio);
+        }
+
+        public void OrdenarDescendente()
+        {
+            bool intercambio;
+            do
+            {
+                intercambio = false;
+                Nodo nodoActual = PrimerNodo;
+                Nodo nodoSiguiente = PrimerNodo?.Liga;
+
+                while (nodoSiguiente != null)
+                {
+                    if (string.Compare(nodoActual.Info.ToString(), nodoSiguiente.Info.ToString(), StringComparison.OrdinalIgnoreCase) < 0)
+                    {
+                        object temp = nodoActual.Info;
+                        nodoActual.Info = nodoSiguiente.Info;
+                        nodoSiguiente.Info = temp;
+
+                        intercambio = true;
+                    }
+
+                    nodoActual = nodoSiguiente;
+                    nodoSiguiente = nodoSiguiente.Liga;
+                }
+            } while (intercambio);
+        }
+
 
         //public IEnumerator GetEnumerator()
         //{
