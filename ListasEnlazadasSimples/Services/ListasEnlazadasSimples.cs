@@ -280,16 +280,58 @@ namespace ListasEnlazadasSimples.Services
             } while (intercambio);
         }
 
+		public string EliminarEnPosicionEspecifica(int posicion)
+		{
+			if (ListaVacia())
+			{
+				return "La lista está vacía, no se puede eliminar ningún nodo.";
+			}
 
-        //public IEnumerator GetEnumerator()
-        //{
-        //    Nodo nodoAuxiliar = PrimerNodo;
+			if (posicion <= 0)
+			{
+				return "La posición específica debe ser mayor que cero.";
+			}
 
-        //    while (nodoAuxiliar != null)
-        //    {
-        //        yield return nodoAuxiliar;
-        //        nodoAuxiliar = nodoAuxiliar.Liga;
-        //    }
-        //}
-    }
+			if (posicion == 1)
+			{
+				return EliminarNodoInicio();
+			}
+
+			Nodo nodoActual = PrimerNodo;
+			Nodo nodoAnterior = null;
+			int posicionActual = 1;
+
+			while (nodoActual != null && posicionActual < posicion)
+			{
+				nodoAnterior = nodoActual;
+				nodoActual = nodoActual.Liga;
+				posicionActual++;
+			}
+
+			if (nodoActual != null)
+			{
+				nodoAnterior.Liga = nodoActual.Liga;
+
+				if (nodoActual == UltimoNodo)
+				{
+					UltimoNodo = nodoAnterior;
+				}
+
+				return "Se ha eliminado el nodo en la posición específica.";
+			}
+
+			return "La posición específica está fuera de rango.";
+		}
+
+		//public IEnumerator GetEnumerator()
+		//{
+		//    Nodo nodoAuxiliar = PrimerNodo;
+
+		//    while (nodoAuxiliar != null)
+		//    {
+		//        yield return nodoAuxiliar;
+		//        nodoAuxiliar = nodoAuxiliar.Liga;
+		//    }
+		//}
+	}
 }
