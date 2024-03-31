@@ -291,5 +291,10 @@ namespace ListasEnlazadasSimples.Services
         //        nodoAuxiliar = nodoAuxiliar.Liga;
         //    }
         //}
+
+        public string EliminarNodoAntesDeDatoX (string datoX)
+        {
+            return "";
+        }
     }
 }

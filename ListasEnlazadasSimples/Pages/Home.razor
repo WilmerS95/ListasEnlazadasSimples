@@ -28,7 +28,7 @@
                             <input type="number" class="form-control" placeholder="Ingrese la ubicación específica" @bind="posicion" />
                             <button class="dropdown-item" @onclick="AgregarNodoEnPosicionEspecifica">Agregar Nodo En Ubicación Específica</button>
                             <button class="dropdown-item" @onclick="AgregarNodoAntesDePosicionEspecifica">Agregar Nodo Antes De Ubicación Específica</button>
-                            <button class="dropdown-item" @onclick="AgregarNodoDespuesDePosicionEspecifica">Agregar Nodo Despuesg De Ubicación Específica</button>
+                            <button class="dropdown-item" @onclick="AgregarNodoDespuesDePosicionEspecifica">Agregar Nodo Despues De Ubicación Específica</button>
                             <div class="dropdown-divider"></div>
                             <input type="text" class="form-control" placeholder="Ingrese el dato a buscar" @bind="datoBuscar" />
                             <button class="dropdown-item" @onclick="BuscarElementoEnParticular">Buscar Elemento en Particular</button>
@@ -44,6 +44,9 @@
                             <button class="dropdown-item" @onclick="EliminarNodoInicio">Eliminar Nodo Al Inicio</button>
                             <div class="dropdown-divider"></div>
                             <button class="dropdown-item" @onclick="BuscarElementoEnParticular">Eliminar Nodo Al Final</button>
+                            <div class="dropdown-divider"></div>
+                            <input type="text" class="form-control" placeholder="Ingrese el dato X" @bind="datoX" />
+                            <button class="dropdown-item" @onclick="EliminarNodoAntesDeDatoX">Eliminar Antes De Dato X</button>
                             <div class="dropdown-divider"></div>
                             <button class="dropdown-item" @onclick="OrdenarAscendente">Ordenar A-Z / Ascendente</button>
                             <button class="dropdown-item" @onclick="OrdenarDescendente">Ordenar Z-A / Descendente</button>
@@ -229,6 +232,11 @@
     void EliminarNodoInicio()
     {
         Mensaje = Lista.EliminarNodoInicio();
+    }
+
+    void EliminarNodoAntesDeDatoX()
+    {
+        
     }
 
     void OrdenarAscendente()
