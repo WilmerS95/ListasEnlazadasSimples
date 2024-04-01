@@ -13,7 +13,7 @@
                 <input type="text" class="form-control" placeholder="Ingrese información" @bind="Info" />
                 <div class="input-group-append">
                     <div class="dropdown">
-                        <button class="btn btn-outline-secondary dropdown-toggle text-truncate"  type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button class="btn btn-outline-secondary dropdown-toggle text-truncate" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Opciones agregar
                         </button>
                         <div class="dropdown-menu dropdown-menu-end">
@@ -43,14 +43,15 @@
                         <div class="dropdown-menu dropdown-menu-end">
                             <button class="dropdown-item" @onclick="EliminarNodoInicio">Eliminar Nodo Al Inicio</button>
                             <div class="dropdown-divider"></div>
-                            <button class="dropdown-item" @onclick="BuscarElementoEnParticular">Eliminar Nodo Al Final</button>
+                            <button class="dropdown-item" @onclick="EliminarNodoFinal">Eliminar Nodo Al Final</button>
                             <div class="dropdown-divider"></div>
-<input type="text" class="form-control" placeholder="Ingrese el dato X" @bind="datoX" />
-<button class="dropdown-item" @onclick="EliminarNodoAntesDeDatoX">Eliminar Antes De Dato X</button>
-<div class="dropdown-divider"></div>
-							<input type="number" class="form-control" placeholder="Ingrese la ubicación específica" @bind="posicion" />
-<button class="dropdown-item" @onclick="EliminarEnPosicionEspecifica">Eliminar En Posición Específica</button>
-<div class="dropdown-divider"></div>
+                            <input type="text" class="form-control" placeholder="Ingrese el dato X" @bind="datoX" />
+                            <button class="dropdown-item" @onclick="EliminarNodoAntesDeDatoX">Eliminar Antes De Dato X</button>
+                            <button class="dropdown-item" @onclick="EliminarNodoDespuesDeDatoX">Eliminar Despues De Dato X</button>
+                            <div class="dropdown-divider"></div>
+                            <input type="number" class="form-control" placeholder="Ingrese la ubicación específica" @bind="posicion" />
+                            <button class="dropdown-item" @onclick="EliminarEnPosicionEspecifica">Eliminar En Posición Específica</button>
+                            <div class="dropdown-divider"></div>
                             <button class="dropdown-item" @onclick="OrdenarAscendente">Ordenar A-Z / Ascendente</button>
                             <button class="dropdown-item" @onclick="OrdenarDescendente">Ordenar Z-A / Descendente</button>
                         </div>
@@ -60,207 +61,216 @@
         </div>
     </div>
 
-	<hr />
+    <hr />
 
-	<p class="lead">@Mensaje</p>
+    <p class="lead">@Mensaje</p>
 
-	<hr />
-	<ul class="list-group list-group-numbered list-group-horizontal">
-		@if (!string.IsNullOrEmpty(ObtenerListaRecursiva()))
-		{
-			@foreach (var item in ObtenerListaRecursiva().Split('\n', StringSplitOptions.RemoveEmptyEntries))
-			{
-				<li class="list-group-item">@item</li>
-			}
-		}
-	</ul>
+    <hr />
+    <ul class="list-group list-group-numbered list-group-horizontal">
+        @if (!string.IsNullOrEmpty(ObtenerListaRecursiva()))
+        {
+            @foreach (var item in ObtenerListaRecursiva().Split('\n', StringSplitOptions.RemoveEmptyEntries))
+            {
+                <li class="list-group-item">@item</li>
+            }
+        }
+    </ul>
 
-	@* <ul class="list-group list-group-numbered list-group-horizontal">
-	<li class="list-group-item">
+    @* <ul class="list-group list-group-numbered list-group-horizontal">
+    <li class="list-group-item">
 
-	@ObtenerListaRecursiva()
-	</li>
-	</ul>
+    @ObtenerListaRecursiva()
+    </li>
+    </ul>
 
-	<p class="lead">@MensajeBusqueda</p>
-	<ul class="list-group list-group-numbered list-group-horizontal">
-	@foreach (var item in Lista)
-	{
-	<li class="list-group-item">@item</li>
-	}
-	</ul> *@
+    <p class="lead">@MensajeBusqueda</p>
+    <ul class="list-group list-group-numbered list-group-horizontal">
+    @foreach (var item in Lista)
+    {
+    <li class="list-group-item">@item</li>
+    }
+    </ul> *@
 </div>
 
 @code {
 
-	public string Info { get; set; }
-	public string datoX { get; set; }
-	public string datoBuscar { get; set; }
-	public int posicion { get; set; }
+    public string Info { get; set; }
+    public string datoX { get; set; }
+    public string datoBuscar { get; set; }
+    public int posicion { get; set; }
 
-	public ListasEnlazadasSimples Lista { get; set; } = new ListasEnlazadasSimples();
+    public ListasEnlazadasSimples Lista { get; set; } = new ListasEnlazadasSimples();
 
-	string Mensaje = string.Empty;
+    string Mensaje = string.Empty;
 
-	void AgregarNodoFinal()
-	{
-		Nodo nuevoNodo = new Nodo(Info);
-		Mensaje = Lista.AgregarNodoAlFinal(nuevoNodo);
-		Info = string.Empty;
-	}
+    void AgregarNodoFinal()
+    {
+        Nodo nuevoNodo = new Nodo(Info);
+        Mensaje = Lista.AgregarNodoAlFinal(nuevoNodo);
+        Info = string.Empty;
+    }
 
-	void AgregarNodoInicio()
-	{
-		Nodo nuevoNodo = new Nodo(Info);
-		Mensaje = Lista.AgregarNodoAlInicio(nuevoNodo);
-		Info = string.Empty;
-	}
+    void AgregarNodoInicio()
+    {
+        Nodo nuevoNodo = new Nodo(Info);
+        Mensaje = Lista.AgregarNodoAlInicio(nuevoNodo);
+        Info = string.Empty;
+    }
 
-	void AgregarNodoAntesDeDatoX()
-	{
-		Nodo nuevoNodo = new Nodo(Info);
-		Mensaje = Lista.AgregarNodoAntesDeDatoX(datoX, nuevoNodo);
-		Info = string.Empty;
-		datoX = string.Empty;
-	}
+    void AgregarNodoAntesDeDatoX()
+    {
+        Nodo nuevoNodo = new Nodo(Info);
+        Mensaje = Lista.AgregarNodoAntesDeDatoX(datoX, nuevoNodo);
+        Info = string.Empty;
+        datoX = string.Empty;
+    }
 
-	void AgregarNodoDespuesDeDatoX()
-	{
-		Nodo nuevoNodo = new Nodo(Info);
-		Mensaje = Lista.AgregarNodoDespuesDeDatoX(datoX, nuevoNodo);
-		Info = string.Empty;
-		datoX = string.Empty;
-	}
+    void AgregarNodoDespuesDeDatoX()
+    {
+        Nodo nuevoNodo = new Nodo(Info);
+        Mensaje = Lista.AgregarNodoDespuesDeDatoX(datoX, nuevoNodo);
+        Info = string.Empty;
+        datoX = string.Empty;
+    }
 
-	void AgregarNodoEnPosicionEspecifica()
-	{
-		Nodo nuevoNodo = new Nodo(Info);
+    void AgregarNodoEnPosicionEspecifica()
+    {
+        Nodo nuevoNodo = new Nodo(Info);
 
-		if (posicion <= 0)
-		{
-			Mensaje = "La ubicación específica debe ser mayor que cero.";
-		}
-		else if (posicion == 1)
-		{
-			Mensaje = Lista.AgregarNodoAlInicio(nuevoNodo);
-		}
-		else
-		{
-			Mensaje = Lista.AgregarNodoEnPosicionEspecifica(nuevoNodo, posicion);
-		}
+        if (posicion <= 0)
+        {
+            Mensaje = "La ubicación específica debe ser mayor que cero.";
+        }
+        else if (posicion == 1)
+        {
+            Mensaje = Lista.AgregarNodoAlInicio(nuevoNodo);
+        }
+        else
+        {
+            Mensaje = Lista.AgregarNodoEnPosicionEspecifica(nuevoNodo, posicion);
+        }
 
-		Info = string.Empty;
-		posicion = 0;
-	}
-
-
-	void AgregarNodoAntesDePosicionEspecifica()
-	{
-		Nodo nuevoNodo = new Nodo(Info);
-
-		if (posicion <= 0)
-		{
-			Mensaje = "La ubicación específica debe ser mayor que cero.";
-		}
-		else
-		{
-			Mensaje = Lista.AgregarNodoAntesDePosicionEspecifica(nuevoNodo, posicion);
-		}
-
-		Info = string.Empty;
-		posicion = 0;
-	}
-
-	void AgregarNodoDespuesDePosicionEspecifica()
-	{
-		Nodo nuevoNodo = new Nodo(Info);
-
-		if (posicion < 0)
-		{
-			Mensaje = "La ubicación específica debe ser un número positivo.";
-		}
-		else
-		{
-			Mensaje = Lista.AgregarNodoDespuesDePosicionEspecifica(nuevoNodo, posicion);
-		}
-		Info = string.Empty;
-		posicion = 0;
-	}
-
-	public string ObtenerListaRecursiva()
-	{
-		StringBuilder sb = new StringBuilder();
-		RecorrerRecursivo(Lista.PrimerNodo, sb);
-		return sb.ToString();
-	}
+        Info = string.Empty;
+        posicion = 0;
+    }
 
 
-	void RecorrerRecursivo(Nodo nodoActual, StringBuilder sb)
-	{
-		if (nodoActual != null)
-		{
-			sb.AppendLine(nodoActual.Info.ToString());
-			RecorrerRecursivo(nodoActual.Liga, sb);
-		}
-	}
+    void AgregarNodoAntesDePosicionEspecifica()
+    {
+        Nodo nuevoNodo = new Nodo(Info);
 
-	// void RecorridoRecursivoDeLaLista()
-	// {
-	//     StringBuilder sb = new StringBuilder();
-	//     RecorrerRecursivo(Lista.PrimerNodo, sb);
-	//     Mensaje = sb.ToString();
-	// }
+        if (posicion <= 0)
+        {
+            Mensaje = "La ubicación específica debe ser mayor que cero.";
+        }
+        else
+        {
+            Mensaje = Lista.AgregarNodoAntesDePosicionEspecifica(nuevoNodo, posicion);
+        }
 
-	void BuscarElementoEnParticular()
-	{
-		if (string.IsNullOrEmpty(datoBuscar))
-		{
-			Mensaje = "Por favor, ingrese un dato válido para buscar.";
-			return;
-		}
+        Info = string.Empty;
+        posicion = 0;
+    }
 
-		(Nodo nodoBuscado, int posicion) = Lista.BuscarElemento(datoBuscar);
-		if (nodoBuscado != null)
-		{
-			Mensaje = $"El elemento fue encontrado en la lista en la posición {posicion}.";
-		}
-		else
-		{
-			Mensaje = "El elemento no fue encontrado en la lista.";
-		}
-		datoX = string.Empty;
+    void AgregarNodoDespuesDePosicionEspecifica()
+    {
+        Nodo nuevoNodo = new Nodo(Info);
 
-	}
+        if (posicion < 0)
+        {
+            Mensaje = "La ubicación específica debe ser un número positivo.";
+        }
+        else
+        {
+            Mensaje = Lista.AgregarNodoDespuesDePosicionEspecifica(nuevoNodo, posicion);
+        }
+        Info = string.Empty;
+        posicion = 0;
+    }
 
-	void EliminarNodoInicio()
-	{
-		Mensaje = Lista.EliminarNodoInicio();
-	}
+    public string ObtenerListaRecursiva()
+    {
+        StringBuilder sb = new StringBuilder();
+        RecorrerRecursivo(Lista.PrimerNodo, sb);
+        return sb.ToString();
+    }
+
+
+    void RecorrerRecursivo(Nodo nodoActual, StringBuilder sb)
+    {
+        if (nodoActual != null)
+        {
+            sb.AppendLine(nodoActual.Info.ToString());
+            RecorrerRecursivo(nodoActual.Liga, sb);
+        }
+    }
+
+    // void RecorridoRecursivoDeLaLista()
+    // {
+    //     StringBuilder sb = new StringBuilder();
+    //     RecorrerRecursivo(Lista.PrimerNodo, sb);
+    //     Mensaje = sb.ToString();
+    // }
+
+    void BuscarElementoEnParticular()
+    {
+        if (string.IsNullOrEmpty(datoBuscar))
+        {
+            Mensaje = "Por favor, ingrese un dato válido para buscar.";
+            return;
+        }
+
+        (Nodo nodoBuscado, int posicion) = Lista.BuscarElemento(datoBuscar);
+        if (nodoBuscado != null)
+        {
+            Mensaje = $"El elemento fue encontrado en la lista en la posición {posicion}.";
+        }
+        else
+        {
+            Mensaje = "El elemento no fue encontrado en la lista.";
+        }
+        datoX = string.Empty;
+
+    }
+
+    void EliminarNodoInicio()
+    {
+        Mensaje = Lista.EliminarNodoInicio();
+    }
+
+    void EliminarNodoFinal()
+    {
+
+    }
 
     void OrdenarAscendente()
     {
         Lista.OrdenarAscendente();
     }
 
-	void OrdenarDescendente()
-	{
-		Lista.OrdenarDescendente();
-	}
+    void OrdenarDescendente()
+    {
+        Lista.OrdenarDescendente();
+    }
 
-	void EliminarEnPosicionEspecifica()
-	{
-		if (posicion <= 0)
-		{
-			Mensaje = "La ubicación específica debe ser mayor que cero.";
-			return;
-		}
+    void EliminarEnPosicionEspecifica()
+    {
+        if (posicion <= 0)
+        {
+            Mensaje = "La ubicación específica debe ser mayor que cero.";
+            return;
+        }
 
-		Mensaje = Lista.EliminarEnPosicionEspecifica(posicion);
-		posicion = 0;
-	}
-void EliminarNodoAntesDeDatoX()
+        Mensaje = Lista.EliminarEnPosicionEspecifica(posicion);
+        posicion = 0;
+    }
+    void EliminarNodoAntesDeDatoX()
+    {
+        Mensaje = Lista.EliminarNodoAntesDeDatoX(datoX);
+    }
 
-{
-    Mensaje = Lista.EliminarNodoAntesDeDatoX(datoX);
-}
+    void EliminarNodoDespuesDeDatoX()
+    {
+        
+    }
 }
