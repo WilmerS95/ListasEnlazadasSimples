@@ -296,7 +296,7 @@ namespace ListasEnlazadasSimples.Services
         {
             if (ListaVacia())
             {
-                return "La Lista se encuentra vacía. No se puede agregar antes de un dato específico.  ";
+                return "La Lista se encuentra vacía. No se puede eliminar antes de un dato específico.  ";
             }
             Nodo nodoActual = PrimerNodo;
             Nodo nodoAnterior = null;
