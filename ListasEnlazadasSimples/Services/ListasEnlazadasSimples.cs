@@ -327,11 +327,41 @@ namespace ListasEnlazadasSimples.Services
 		//{
 		//    Nodo nodoAuxiliar = PrimerNodo;
 
-		//    while (nodoAuxiliar != null)
-		//    {
-		//        yield return nodoAuxiliar;
-		//        nodoAuxiliar = nodoAuxiliar.Liga;
-		//    }
-		//}
-	}
+        //    while (nodoAuxiliar != null)
+        //    {
+        //        yield return nodoAuxiliar;
+        //        nodoAuxiliar = nodoAuxiliar.Liga;
+        //    }
+        //}
+
+        public string EliminarNodoAntesDeDatoX(string datoX )
+        {
+            if (ListaVacia())
+            {
+                return "La Lista se encuentra vacía. No se puede eliminar antes de un dato específico.  ";
+            }
+            Nodo nodoActual = PrimerNodo;
+            Nodo nodoAnterior = null;
+
+            while (nodoActual != null)
+            {
+                if (nodoActual.Liga != null && nodoActual.Liga.Info.ToString() == datoX)
+                {
+                    if (nodoActual ==  PrimerNodo)
+                    {
+                        PrimerNodo = nodoActual.Liga;
+                        return "El primer dato no se puede eliminar, ya que no hay un dato antes que él. ";
+
+                    }
+                    nodoAnterior.Liga = nodoActual.Liga;
+
+                    return "Se ha eliminado el nodo antes del dato específico. ";
+
+                }
+                    nodoAnterior = nodoActual;
+                    nodoActual = nodoActual.Liga;
+            }
+            return "El dato específico no se encontró en la lista. ";
+        }
+    }
 }

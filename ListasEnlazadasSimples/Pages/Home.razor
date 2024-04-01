@@ -7,55 +7,58 @@
 <PageTitle>Home</PageTitle>
 
 <div class="container mt-5">
-	<div class="row">
-		<div class="col-md-6">
-			<div class="input-group">
-				<input type="text" class="form-control" placeholder="Ingrese información" @bind="Info" />
-				<div class="input-group-append">
-					<div class="dropdown">
-						<button class="btn btn-outline-secondary dropdown-toggle text-truncate" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							Opciones agregar
-						</button>
-						<div class="dropdown-menu dropdown-menu-end">
-							<button class="dropdown-item" @onclick="AgregarNodoInicio">Agregar Nodo Al Inicio</button>
-							<div class="dropdown-divider"></div>
-							<button class="dropdown-item" @onclick="AgregarNodoFinal">Agregar Nodo Al Final</button>
-							<div class="dropdown-divider"></div>
-							<input type="text" class="form-control" placeholder="Ingrese el dato X" @bind="datoX" />
-							<button class="dropdown-item" @onclick="() => AgregarNodoAntesDeDatoX()">Agregar Nodo Antes De Dato X</button>
-							<button class="dropdown-item" @onclick="() => AgregarNodoDespuesDeDatoX()">Agregar Nodo Después De Dato X</button>
-							<div class="dropdown-divider"></div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Ingrese información" @bind="Info" />
+                <div class="input-group-append">
+                    <div class="dropdown">
+                        <button class="btn btn-outline-secondary dropdown-toggle text-truncate"  type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Opciones agregar
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-end">
+                            <button class="dropdown-item" @onclick="AgregarNodoInicio">Agregar Nodo Al Inicio</button>
+                            <div class="dropdown-divider"></div>
+                            <button class="dropdown-item" @onclick="AgregarNodoFinal">Agregar Nodo Al Final</button>
+                            <div class="dropdown-divider"></div>
+                            <input type="text" class="form-control" placeholder="Ingrese el dato X" @bind="datoX" />
+                            <button class="dropdown-item" @onclick="() => AgregarNodoAntesDeDatoX()">Agregar Nodo Antes De Dato X</button>
+                            <button class="dropdown-item" @onclick="() => AgregarNodoDespuesDeDatoX()">Agregar Nodo Después De Dato X</button>
+                            <div class="dropdown-divider"></div>
+                            <input type="number" class="form-control" placeholder="Ingrese la ubicación específica" @bind="posicion" />
+                            <button class="dropdown-item" @onclick="AgregarNodoEnPosicionEspecifica">Agregar Nodo En Ubicación Específica</button>
+                            <button class="dropdown-item" @onclick="AgregarNodoAntesDePosicionEspecifica">Agregar Nodo Antes De Ubicación Específica</button>
+                            <button class="dropdown-item" @onclick="AgregarNodoDespuesDePosicionEspecifica">Agregar Nodo Despues De Ubicación Específica</button>
+                            <div class="dropdown-divider"></div>
+                            <input type="text" class="form-control" placeholder="Ingrese el dato a buscar" @bind="datoBuscar" />
+                            <button class="dropdown-item" @onclick="BuscarElementoEnParticular">Buscar Elemento en Particular</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group-append">
+                    <div class="dropdown">
+                        <button class="btn btn-outline-secondary dropdown-toggle text-truncate" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Opciones eliminar
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-end">
+                            <button class="dropdown-item" @onclick="EliminarNodoInicio">Eliminar Nodo Al Inicio</button>
+                            <div class="dropdown-divider"></div>
+                            <button class="dropdown-item" @onclick="BuscarElementoEnParticular">Eliminar Nodo Al Final</button>
+                            <div class="dropdown-divider"></div>
+<input type="text" class="form-control" placeholder="Ingrese el dato X" @bind="datoX" />
+<button class="dropdown-item" @onclick="EliminarNodoAntesDeDatoX">Eliminar Antes De Dato X</button>
+<div class="dropdown-divider"></div>
 							<input type="number" class="form-control" placeholder="Ingrese la ubicación específica" @bind="posicion" />
-							<button class="dropdown-item" @onclick="AgregarNodoEnPosicionEspecifica">Agregar Nodo En Ubicación Específica</button>
-							<button class="dropdown-item" @onclick="AgregarNodoAntesDePosicionEspecifica">Agregar Nodo Antes De Ubicación Específica</button>
-							<button class="dropdown-item" @onclick="AgregarNodoDespuesDePosicionEspecifica">Agregar Nodo Despuesg De Ubicación Específica</button>
-							<div class="dropdown-divider"></div>
-							<input type="text" class="form-control" placeholder="Ingrese el dato a buscar" @bind="datoBuscar" />
-							<button class="dropdown-item" @onclick="BuscarElementoEnParticular">Buscar Elemento en Particular</button>
-						</div>
-					</div>
-				</div>
-				<div class="input-group-append">
-					<div class="dropdown">
-						<button class="btn btn-outline-secondary dropdown-toggle text-truncate" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							Opciones eliminar
-						</button>
-						<div class="dropdown-menu dropdown-menu-end">
-							<button class="dropdown-item" @onclick="EliminarNodoInicio">Eliminar Nodo Al Inicio</button>
-							<div class="dropdown-divider"></div>
-							<button class="dropdown-item" @onclick="BuscarElementoEnParticular">Eliminar Nodo Al Final</button>
-							<div class="dropdown-divider"></div>
-							<input type="number" class="form-control" placeholder="Ingrese la ubicación específica" @bind="posicion" />
-							<button class="dropdown-item" @onclick="EliminarEnPosicionEspecifica">Eliminar En Posición Específica</button>
-							<div class="dropdown-divider"></div>
-							<button class="dropdown-item" @onclick="OrdenarAscendente">Ordenar A-Z / Ascendente</button>
-							<button class="dropdown-item" @onclick="OrdenarDescendente">Ordenar Z-A / Descendente</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+<button class="dropdown-item" @onclick="EliminarEnPosicionEspecifica">Eliminar En Posición Específica</button>
+<div class="dropdown-divider"></div>
+                            <button class="dropdown-item" @onclick="OrdenarAscendente">Ordenar A-Z / Ascendente</button>
+                            <button class="dropdown-item" @onclick="OrdenarDescendente">Ordenar Z-A / Descendente</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 	<hr />
 
@@ -234,10 +237,10 @@
 		Mensaje = Lista.EliminarNodoInicio();
 	}
 
-	void OrdenarAscendente()
-	{
-		Lista.OrdenarAscendente();
-	}
+    void OrdenarAscendente()
+    {
+        Lista.OrdenarAscendente();
+    }
 
 	void OrdenarDescendente()
 	{
@@ -255,4 +258,9 @@
 		Mensaje = Lista.EliminarEnPosicionEspecifica(posicion);
 		posicion = 0;
 	}
+void EliminarNodoAntesDeDatoX()
+
+{
+    Mensaje = Lista.EliminarNodoAntesDeDatoX(datoX);
+}
 }
