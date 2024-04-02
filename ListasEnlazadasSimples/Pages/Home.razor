@@ -236,11 +236,15 @@
     void EliminarNodoInicio()
     {
         Mensaje = Lista.EliminarNodoInicio();
+        Info = string.Empty;
+        datoX = string.Empty;
     }
 
     void EliminarNodoFinal()
     {
         Mensaje = Lista.EliminarNodoFinal();
+        Info = string.Empty;
+        datoX = string.Empty;
     }
 
     void OrdenarAscendente()
@@ -262,17 +266,21 @@
         }
 
         Mensaje = Lista.EliminarEnPosicionEspecifica(posicion);
+        Info = string.Empty;
+        datoX = string.Empty;
         posicion = 0;
     }
     void EliminarNodoAntesDeDatoX()
     {
         Mensaje = Lista.EliminarNodoAntesDeDatoX(datoX);
+        Info = string.Empty;
+        datoX = string.Empty;
     }
 
     void EliminarNodoDespuesDeDatoX()
     {
-
         Lista.EliminarNodoDespuesDeDatoX(datoX);
-
+        Info = string.Empty;
+        datoX = string.Empty;
     }
 }
