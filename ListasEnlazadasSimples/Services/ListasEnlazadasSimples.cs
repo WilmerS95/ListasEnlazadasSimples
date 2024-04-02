@@ -412,8 +412,6 @@ namespace ListasEnlazadasSimples.Services
             {
                 if (nodoActual.Info.ToString() == datoX)
                 {
-                    // Encontramos el nodo X
-
                     if (nodoActual.Liga == null)
                     {
                         return "No hay otro nodo después del nodo con dato X";
@@ -432,10 +430,7 @@ namespace ListasEnlazadasSimples.Services
                     nodoActual = nodoActual.Liga;
                 }
             }
-
             return "No se encontró el dato X en la lista";
         }
-
     }
-
 }
