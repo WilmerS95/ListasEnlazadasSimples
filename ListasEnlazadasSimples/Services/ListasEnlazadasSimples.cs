@@ -397,5 +397,45 @@ namespace ListasEnlazadasSimples.Services
             }
             return "El dato específico no se encontró en la lista. ";
         }
+
+        public string EliminarNodoDespuesDeDatoX(string datoX)
+        {
+            if (ListaVacia())
+            {
+                return "La lista está vacía";
+            }
+
+            Nodo nodoActual = PrimerNodo;
+            Nodo nodoAnterior = null;
+
+            while (nodoActual != null)
+            {
+                if (nodoActual.Info.ToString() == datoX)
+                {
+                    // Encontramos el nodo X
+
+                    if (nodoActual.Siguiente == null)
+                    {
+                        return "No hay otro nodo después del nodo con dato X";
+                    }
+                    else
+                    {
+                        nodoAnterior = nodoActual;
+                        nodoActual = nodoActual.Siguiente;
+                        nodoAnterior.Siguiente = nodoActual.Siguiente;
+                        return "Se eliminó el nodo después del nodo con dato X";
+                    }
+                }
+                else
+                {
+                    nodoAnterior = nodoActual;
+                    nodoActual = nodoActual.Siguiente;
+                }
+            }
+
+            return "No se encontró el dato X en la lista";
+        }
+
     }
+
 }
