@@ -414,22 +414,22 @@ namespace ListasEnlazadasSimples.Services
                 {
                     // Encontramos el nodo X
 
-                    if (nodoActual.Siguiente == null)
+                    if (nodoActual.Liga == null)
                     {
                         return "No hay otro nodo después del nodo con dato X";
                     }
                     else
                     {
                         nodoAnterior = nodoActual;
-                        nodoActual = nodoActual.Siguiente;
-                        nodoAnterior.Siguiente = nodoActual.Siguiente;
+                        nodoActual = nodoActual.Liga;
+                        nodoAnterior.Liga = nodoActual.Liga;
                         return "Se eliminó el nodo después del nodo con dato X";
                     }
                 }
                 else
                 {
                     nodoAnterior = nodoActual;
-                    nodoActual = nodoActual.Siguiente;
+                    nodoActual = nodoActual.Liga;
                 }
             }
 
